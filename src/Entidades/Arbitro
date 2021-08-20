@@ -40,5 +40,5 @@ public class Arbitro {
 					+ (fecha_nacimiento==null?null:fecha_nacimiento.format(dFormat)) + "]\n";
 		}
 		
-		
+
 }
