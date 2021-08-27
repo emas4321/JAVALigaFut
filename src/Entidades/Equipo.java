@@ -10,6 +10,7 @@ public class Equipo {
 	private int difGoles;
 	
 	//hola
+	//chau
 	public int getIdEquipo() {
 		return idEquipo;
 	}
