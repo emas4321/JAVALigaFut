@@ -39,6 +39,17 @@ public class Entrenador {
 			return "Entrenador [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha_nacimiento="
 					+ (fecha_nacimiento==null?null:fecha_nacimiento.format(dFormat)) + "]\n";
 		}
+		public Entrenador(int dni, String nombre, String apellido, LocalDate fecha_nacimiento, String dateFormat) {
+			super();
+			this.dni = dni;
+			this.nombre = nombre;
+			this.apellido = apellido;
+			this.fecha_nacimiento = fecha_nacimiento;
+			this.dateFormat = dateFormat;
+		}
+		public Entrenador() {
+			
+		}
 		
 	
 
