@@ -53,7 +53,6 @@ public void Baja (Entrenador e) {
 									}
 
 
-
 public void Modif(Entrenador e) {
 	
 	try {
