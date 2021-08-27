@@ -68,6 +68,7 @@ public void Modif(Entrenador e) {
 	} catch (Exception ex) {ex.printStackTrace();}
 }
 
+<<<<<<< HEAD
 public LinkedList<Entrenador> getAll () {
 		LinkedList<Entrenador> Entrenadores = new LinkedList<>();
 		try {
@@ -92,3 +93,5 @@ public LinkedList<Entrenador> getAll () {
 
 
 }
+=======
+>>>>>>> 4c093096cb71c779d5e321f01deda89e890f4522
