@@ -27,6 +27,10 @@ public class DataEntrenador {
 																						} catch (SQLException ex) { ex.printStackTrace(); }
 																				}*/	
 																}
+	
+
+		
+		
 		
 public void Baja (Entrenador e) {
 	
@@ -45,8 +49,10 @@ public void Baja (Entrenador e) {
 																		if(stmt!=null) {stmt.close();}
 																		conn.close();
 																		} catch (SQLException ex) { ex.printStackTrace(); }
-																}*/	
+																}*/
 									}
+
+
 
 public void Modif(Entrenador e) {
 	
@@ -63,7 +69,7 @@ public void Modif(Entrenador e) {
 	} catch (Exception ex) {ex.printStackTrace();}
 }
 
-public void getAll () {
+public LinkedList<Entrenador> getAll () {
 		LinkedList<Entrenador> Entrenadores = new LinkedList<>();
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/javamarket","root","root");
@@ -79,11 +85,10 @@ public void getAll () {
 								if(stmt!=null) {stmt.close();}
 								if(rs!=null) {rs.close();}
 								conn.close();
-								System.out.println(Entrenadores);
-								
-			}
-		}catch(Exception ex) {ex.printStackTrace();}
-		}
+								}
+			}catch(Exception ex) {ex.printStackTrace();}
+		return Entrenadores;
+	}
 
 
 
