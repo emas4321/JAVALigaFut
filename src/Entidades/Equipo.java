@@ -9,6 +9,7 @@ public class Equipo {
 	private int puntaje;
 	private int difGoles;
 	
+	//hola
 	public int getIdEquipo() {
 		return idEquipo;
 	}
