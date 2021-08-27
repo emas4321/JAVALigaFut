@@ -8,16 +8,16 @@ public class LogicEntrenador {
 	private Data.DataEntrenador _DataEntrenador;
 	public DataEntrenador GetDataEntrenador(){return this._DataEntrenador;}
 	public void SetDataEntrenador(DataEntrenador dataEn){this._DataEntrenador = dataEn;}
-	private LinkedList<Entrenador> _listaEntrenadores= new LinkedList<>();
+	private DataEntrenador de;
 	
-	 public LinkedList<Entrenador> getListaEntrenadores() {
+	/* public LinkedList<Entrenador> getListaEntrenadores() {
 		return _listaEntrenadores;
 	}
 
 
 	public void setListaEntrenadores(LinkedList<Entrenador> listaEntrenadores) {
 		this._listaEntrenadores = listaEntrenadores;
-	}
+	}*/
 
 	
 	public void EntrenadorLogic()
@@ -29,15 +29,13 @@ public class LogicEntrenador {
 
  
  
- public LinkedList<Entrenador> GetAll() 
+ public LinkedList<Entrenador> getAll() 
  {
-     return this._DataEntrenador.GetAll();
+     return de.getAll();
  }
+ 
+ 
 
- public Entrenador GetOne(int id)
- {
-     return DataEntrenador.GetOne(id);
- }
 
  public void Delete(int id)
  {
