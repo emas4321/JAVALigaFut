@@ -24,9 +24,9 @@ public class LogicEntrenador {
 	}*/
 
 	
-	public  DataEntrenador EntrenadorLogic()
+	public   LogicEntrenador()
      {
-		return de= new DataEntrenador();
+		 de= new DataEntrenador();
      }
 
 
@@ -50,6 +50,14 @@ public class LogicEntrenador {
  {
 	 return de.Modif(ent);
  }
+
+
+
+
+public Entrenador EntrenadorLogic() {
+	// TODO Auto-generated method stub
+	return null;
+}
  
  /*public LinkedList<Arbitro> getAll()
  {

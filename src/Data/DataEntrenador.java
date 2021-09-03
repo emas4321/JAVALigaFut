@@ -10,7 +10,7 @@ public class DataEntrenador {
 public String Alta(Entrenador e)  {
 			
 		try {
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/LigaFutbol","root","root");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/ligafut","root","root");
 		PreparedStatement stmt= conn.prepareStatement("insert into Entrenador(dniEntrenador , nombre , apellido , fechaNac) values (?,?,?,?) " , PreparedStatement. RETURN_GENERATED_KEYS);
 		stmt.setInt(1, e.getDni());
 		stmt.setString(2, e.getNombre());
@@ -37,7 +37,7 @@ public String Baja (Entrenador e) {
 	
 	try {
 	
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/LigaFutbol","root","root");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/ligafut","root","root");
 		PreparedStatement stmt = conn.prepareStatement("delete from Entrenador where dniEntrenador = ?" );
 		stmt.setInt(1 , e.getDni());
 		stmt.executeUpdate();
@@ -59,7 +59,7 @@ public String Baja (Entrenador e) {
 public String Modif(Entrenador e) {
 	
 	try {
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/LigaFutbol","root","root");
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/ligafut","root","root");
 		PreparedStatement stmt = conn.prepareStatement("update Entrenador set  nombre = ? , apellido = ? , fechaNac = ? where dniEntrenador = ?" );
 		stmt.setString(1, e.getNombre());
 		stmt.setString(2, e.getApellido());
@@ -73,11 +73,10 @@ public String Modif(Entrenador e) {
 return e.getNombre()+e.getApellido();
 }
 
-
 public LinkedList<Entrenador> getAll () {
 		LinkedList<Entrenador> Entrenadores = new LinkedList<>();
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/LigaFutbol","root","root");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/ligafut","root","root");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from Entrenador");
 			while (rs.next()) {

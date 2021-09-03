@@ -9,7 +9,9 @@ import Logic.*;
 
 
 public class Principal {
-	  static Logic.LogicEntrenador dtlogic = new Logic.LogicEntrenador();
+	   static Logic.LogicEntrenador dtlogic = new Logic.LogicEntrenador();
+	  
+
 	
 	  public static int menu() {
 		int op=0;
