@@ -1,14 +1,18 @@
 package Logic;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import Data.DataEntrenador;
-import Entidades.Entrenador;
+import Data.*;
+import Entidades.*;
+
 
 public class LogicEntrenador {
-	private Data.DataEntrenador _DataEntrenador;
+	/*private Data.DataEntrenador _DataEntrenador;
 	public DataEntrenador GetDataEntrenador(){return this._DataEntrenador;}
-	public void SetDataEntrenador(DataEntrenador dataEn){this._DataEntrenador = dataEn;}
+	public void SetDataEntrenador(DataEntrenador dataEn){this._DataEntrenador = dataEn;}*/
+	
 	private DataEntrenador de;
+	private DataArbitro da;
+	
 	
 	/* public LinkedList<Entrenador> getListaEntrenadores() {
 		return _listaEntrenadores;
@@ -20,11 +24,10 @@ public class LogicEntrenador {
 	}*/
 
 	
-	public void EntrenadorLogic()
+	public  DataEntrenador EntrenadorLogic()
      {
-     this._DataEntrenador= new DataEntrenador();
+		return de= new DataEntrenador();
      }
-
 
 
  
@@ -34,15 +37,35 @@ public class LogicEntrenador {
      return de.getAll();
  }
  
+ public String alta(Entrenador ent) 
+ {
+	 return de.Alta(ent);
+ }
+ public String baja(Entrenador ent) 
+ {
+	 return de.Baja(ent);
+ }
+ 
+ public String modif(Entrenador ent)
+ {
+	 return de.Modif(ent);
+ }
+ 
+ /*public LinkedList<Arbitro> getAll()
+ {
+	 return da.getAll();
+ }
+ 
  
 
 
- public void Delete(int id)
+
+ /*public void Delete(int id)
  {
      this._DataEntrenador.Delete(id);
  }
 
-/* public void Save(Usuario usr)
+ public void Save(Usuario usr)
  {
      this.DataEntrenador.SaveChanges(usr);
  }*/

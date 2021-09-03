@@ -7,11 +7,11 @@ import java.util.*;
 
 public class DataEntrenador {
 	
-		public void Alta(Entrenador e)  {
+public String Alta(Entrenador e)  {
 			
 		try {
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/javamarket","root","root");
-		PreparedStatement stmt= conn.prepareStatement("insert into Entrenador(dni , nombre , apellido , fecha_nacimiento) values (?,?,?,?) " , PreparedStatement. RETURN_GENERATED_KEYS);
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/LigaFutbol","root","root");
+		PreparedStatement stmt= conn.prepareStatement("insert into Entrenador(dniEntrenador , nombre , apellido , fechaNac) values (?,?,?,?) " , PreparedStatement. RETURN_GENERATED_KEYS);
 		stmt.setInt(1, e.getDni());
 		stmt.setString(2, e.getNombre());
 		stmt.setString(3, e.getApellido());
@@ -26,18 +26,19 @@ public class DataEntrenador {
 																							conn.close();
 																						} catch (SQLException ex) { ex.printStackTrace(); }
 																				}*/	
-																}
+return e.getNombre()+e.getApellido();																
+									}
 	
 
 		
 		
 		
-public void Baja (Entrenador e) {
+public String Baja (Entrenador e) {
 	
 	try {
 	
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/javamarket","root","root");
-		PreparedStatement stmt = conn.prepareStatement("delete from Entrenador where dni = ?" );
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/LigaFutbol","root","root");
+		PreparedStatement stmt = conn.prepareStatement("delete from Entrenador where dniEntrenador = ?" );
 		stmt.setInt(1 , e.getDni());
 		stmt.executeUpdate();
 		if(stmt!=null) {stmt.close();}
@@ -50,14 +51,16 @@ public void Baja (Entrenador e) {
 																		conn.close();
 																		} catch (SQLException ex) { ex.printStackTrace(); }
 																}*/
+									
+	return e.getNombre()+e.getApellido();
 									}
 
 
-public void Modif(Entrenador e) {
+public String Modif(Entrenador e) {
 	
 	try {
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/javamarket","root","root");
-		PreparedStatement stmt = conn.prepareStatement("update Entrenador set  nombre = ? , apellido = ? , fecha_nacimiento = ? where dni = ?" );
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/LigaFutbol","root","root");
+		PreparedStatement stmt = conn.prepareStatement("update Entrenador set  nombre = ? , apellido = ? , fechaNac = ? where dniEntrenador = ?" );
 		stmt.setString(1, e.getNombre());
 		stmt.setString(2, e.getApellido());
 		stmt.setObject(3, e.getFecha_nacimiento());
@@ -66,21 +69,23 @@ public void Modif(Entrenador e) {
 		if(stmt!=null) {stmt.close();}
 		conn.close();
 	} catch (Exception ex) {ex.printStackTrace();}
+
+return e.getNombre()+e.getApellido();
 }
 
 
 public LinkedList<Entrenador> getAll () {
 		LinkedList<Entrenador> Entrenadores = new LinkedList<>();
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/javamarket","root","root");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/LigaFutbol","root","root");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from Entrenador");
 			while (rs.next()) {
 								Entrenador e = new Entrenador();
-								e.setDni(rs.getInt("dni"));
+								e.setDni(rs.getInt("dniEntrenador"));
 								e.setNombre(rs.getString("nombre"));
 								e.setApellido(rs.getString("apellido"));
-								e.setFecha_nacimiento(rs.getObject("fecha_nacimiento", LocalDate.class));
+								e.setFecha_nacimiento(rs.getObject("fechaNac", LocalDate.class));
 								Entrenadores.add(e);
 								if(stmt!=null) {stmt.close();}
 								if(rs!=null) {rs.close();}
