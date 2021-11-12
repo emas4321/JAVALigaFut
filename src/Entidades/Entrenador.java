@@ -9,6 +9,7 @@ public class Entrenador {
 		private String apellido;
 		private  LocalDate fecha_nacimiento;
 		private String dateFormat = "dd/MM/yyyy";
+		private Equipo equipo;
 		public int getDni() {
 			return dni;
 		}
@@ -32,6 +33,14 @@ public class Entrenador {
 		}
 		public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
 			this.fecha_nacimiento = fecha_nacimiento;
+		}
+		
+		
+		public Equipo getEquipo() {
+			return equipo;
+		}
+		public void setEquipo(Equipo equipo) {
+			this.equipo = equipo;
 		}
 		@Override
 		public String toString() {

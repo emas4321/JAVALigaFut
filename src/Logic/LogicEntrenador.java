@@ -11,7 +11,7 @@ public class LogicEntrenador {
 	public void SetDataEntrenador(DataEntrenador dataEn){this._DataEntrenador = dataEn;}*/
 	
 	private DataEntrenador de;
-	private DataArbitro da;
+	
 	
 	
 	/* public LinkedList<Entrenador> getListaEntrenadores() {
@@ -28,15 +28,14 @@ public class LogicEntrenador {
      {
 		 de= new DataEntrenador();
      }
+	
 
 
- 
- 
+	
  public LinkedList<Entrenador> getAll() 
  {
      return de.getAll();
  }
- 
  public String alta(Entrenador ent) 
  {
 	 return de.Alta(ent);
@@ -45,37 +44,20 @@ public class LogicEntrenador {
  {
 	 return de.Baja(ent);
  }
- 
  public String modif(Entrenador ent)
  {
 	 return de.Modif(ent);
  }
 
-
-
+ 
 
 public Entrenador EntrenadorLogic() {
-	// TODO Auto-generated method stub
+	
 	return null;
 }
- 
- /*public LinkedList<Arbitro> getAll()
- {
-	 return da.getAll();
- }
- 
- 
 
 
 
- /*public void Delete(int id)
- {
-     this._DataEntrenador.Delete(id);
- }
-
- public void Save(Usuario usr)
- {
-     this.DataEntrenador.SaveChanges(usr);
- }*/
 
 }
+ 

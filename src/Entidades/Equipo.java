@@ -1,7 +1,5 @@
 package Entidades;
 
-
-
 public class Equipo {
 	private int idEquipo;
 	private String nombre;
@@ -46,6 +44,4 @@ public class Equipo {
 		return "Equipo [idEquipo=" + idEquipo + ", nombre=" + nombre + ", Localidad=" + Localidad + ", puntaje=" + puntaje + ", difGoles=" + difGoles + "]";
 	}
 	
-	
-
 }

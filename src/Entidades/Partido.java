@@ -8,7 +8,7 @@ public class Partido {
 			private LocalDate fecha;
 			private LocalTime hora;
 			private String resultado;
-			private LinkedList<String> incidencias;
+			private String incidencias;
 			
 			public LocalDate getFecha() {
 				return fecha;
@@ -28,16 +28,16 @@ public class Partido {
 			public void setResultado(String resultado) {
 				this.resultado = resultado;
 			}
-			public LinkedList<String> getIncidencias() {
+			public String getIncidencias() {
 				return incidencias;
 			}
-			public void setIncidencias(LinkedList<String> incidencias) {
+			public void setIncidencias(String incidencias) {
 				this.incidencias = incidencias;
 			}
 			@Override
 			public String toString() {
 				return "Partido [fecha=" + fecha + ", hora=" + hora + ", resultado=" + resultado + ", incidencias="
-						+ incidencias + "]";
+						+ incidencias + "]\n";
 			}
 			
 		

@@ -7,15 +7,17 @@ import java.util.*;
 
 public class DataEntrenador {
 	
-public String Alta(Entrenador e)  {
+public String Alta(Entrenador e )  {
 			
 		try {
+		
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/ligafut","root","root");
-		PreparedStatement stmt= conn.prepareStatement("insert into Entrenador(dniEntrenador , nombre , apellido , fechaNac) values (?,?,?,?) " , PreparedStatement. RETURN_GENERATED_KEYS);
+		PreparedStatement stmt= conn.prepareStatement("insert into Entrenador(dniEntrenador , nombre , apellido , fechaNac , idEquipo) values (?,?,?,?,?) " , PreparedStatement. RETURN_GENERATED_KEYS);
 		stmt.setInt(1, e.getDni());
 		stmt.setString(2, e.getNombre());
 		stmt.setString(3, e.getApellido());
 		stmt.setObject(4, e.getFecha_nacimiento());
+		stmt.setInt(5, e.getEquipo().getIdEquipo());
 		stmt.executeUpdate();
 		conn.close();
 		stmt.close();
@@ -26,13 +28,11 @@ public String Alta(Entrenador e)  {
 																							conn.close();
 																						} catch (SQLException ex) { ex.printStackTrace(); }
 																				}*/	
-return e.getNombre()+e.getApellido();																
+return e.getNombre()+"  "+e.getApellido()+" ";																
 									}
 	
 
-		
-		
-		
+				
 public String Baja (Entrenador e) {
 	
 	try {
@@ -43,7 +43,6 @@ public String Baja (Entrenador e) {
 		stmt.executeUpdate();
 		if(stmt!=null) {stmt.close();}
 		conn.close();
-		System.out.println("El entrenador de id:"+e.getDni()+"  fue eliminado de la BD");
 		}catch (Exception ex) {ex.printStackTrace();} /*finally {
 																	try {
 																		
@@ -51,8 +50,9 @@ public String Baja (Entrenador e) {
 																		conn.close();
 																		} catch (SQLException ex) { ex.printStackTrace(); }
 																}*/
-									
-	return e.getNombre()+e.getApellido();
+
+		return "";						
+	
 									}
 
 
@@ -70,7 +70,7 @@ public String Modif(Entrenador e) {
 		conn.close();
 	} catch (Exception ex) {ex.printStackTrace();}
 
-return e.getNombre()+e.getApellido();
+	return e.getNombre()+"  "+e.getApellido()+" ";	
 }
 
 public LinkedList<Entrenador> getAll () {
@@ -78,7 +78,7 @@ public LinkedList<Entrenador> getAll () {
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/ligafut","root","root");
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from Entrenador");
+			ResultSet rs = stmt.executeQuery("select * from entrenador");
 			while (rs.next()) {
 								Entrenador e = new Entrenador();
 								e.setDni(rs.getInt("dniEntrenador"));
@@ -86,13 +86,18 @@ public LinkedList<Entrenador> getAll () {
 								e.setApellido(rs.getString("apellido"));
 								e.setFecha_nacimiento(rs.getObject("fechaNac", LocalDate.class));
 								Entrenadores.add(e);
-								if(stmt!=null) {stmt.close();}
-								if(rs!=null) {rs.close();}
-								conn.close();
 								}
+			if(stmt!=null) {stmt.close();}
+			if(rs!=null) {rs.close();}
+			conn.close();
 			}catch(Exception ex) {ex.printStackTrace();}
 		return Entrenadores;
 	}
+
+
+
+
+
 
 
 

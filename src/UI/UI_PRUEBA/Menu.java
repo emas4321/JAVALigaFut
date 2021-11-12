@@ -1,4 +1,4 @@
-package UI.UI_Console;
+package UI.UI_PRUEBA;
 
 public class Menu {
 
