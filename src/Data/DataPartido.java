@@ -13,10 +13,10 @@ import Entidades.*;
 public class DataPartido {
 
 
-	public LinkedList<Partido> getAll () {
+	public static LinkedList<Partido> getAll () {
 		LinkedList<Partido> Partidos = new LinkedList<>();
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/ligafut","root","root");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ligafut","root","root");
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from Partido");
 			while (rs.next()) {
@@ -24,7 +24,7 @@ public class DataPartido {
 								p.setFecha(rs.getObject("fecha", LocalDate.class));
 								p.setHora(rs.getObject("hora", LocalTime.class));
 								p.setResultado(rs.getString("resultado"));
-								p.setIncidencias(rs.getString("incidencias"));
+								/*p.setIncidencias(rs.getString("incidencias"))*/
 								Partidos.add(p);
 								}
 			if(stmt!=null) {stmt.close();}

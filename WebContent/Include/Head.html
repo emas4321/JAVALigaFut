@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    
+    <div class="bg-light">
+		<nav class="navbar navbar-expand-md navbar-dark border-3 border-bottom border-primary" style="background-color: #4b63e9;">
+            <div class="container-fluid">
+                <a href="index.jsp" class="navbar-brand">Liga Futbol</a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#MenuNavegacion">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+
+			<div id="MenuNavegacion" class="collapse navbar-collapse">
+				<ul class="navbar-nav ms-3">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
+                          Equipo
+                        </a>
+                        <ul class="dropdown-menu w-500">
+                        	<form action="Controlador" method=post>
+                          <li><button class="btn btn-sm btn-light w-100" type="submit" name="accion" value="add">Cargar Equipo</button></li>
+                          <li><button class="btn btn-sm btn-light" type="submit" name="accion" value="modif">Modificar o Eliminar Equipo</button></li>
+                          <li><button class="btn btn-sm btn-light w-100" type="submit" name="accion" value="listar">Mostrar Equipos</button></li>
+                          </form>
+                        </ul>
+                        
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
+                          Jugador
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Cargar Jugador</a></li>
+                          <li><a class="dropdown-item" href="#">Eliminar Jugador</a></li>
+                          <li><a class="dropdown-item" href="#">Modificar Jugador</a></li>
+                          <li><a class="dropdown-item" href="#">Mostrar Jugadores</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
+                          Entrenador
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Cargar Entrenador</a></li>
+                          <li><a class="dropdown-item" href="#">Eliminar Entrenador</a></li>
+                          <li><a class="dropdown-item" href="#">Modificar Entrenador</a></li>
+                          <li><a class="dropdown-item" href="#">Mostrar Entrenadores</a></li>
+                        </ul>
+                    </li>    
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>

@@ -1,5 +1,7 @@
 package Entidades;
 
+import java.util.Iterator;
+
 public class Equipo {
 	private int idEquipo;
 	private String nombre;
@@ -7,7 +9,7 @@ public class Equipo {
 	private int puntaje;
 	private int difGoles;
 	
-	
+
 	public int getIdEquipo() {
 		return idEquipo;
 	}
@@ -42,6 +44,9 @@ public class Equipo {
 	@Override
 	public String toString() {
 		return "Equipo [idEquipo=" + idEquipo + ", nombre=" + nombre + ", Localidad=" + Localidad + ", puntaje=" + puntaje + ", difGoles=" + difGoles + "]";
+		
 	}
 	
+	
+
 }

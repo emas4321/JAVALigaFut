@@ -9,7 +9,6 @@ public class Entrenador {
 		private String apellido;
 		private  LocalDate fecha_nacimiento;
 		private String dateFormat = "dd/MM/yyyy";
-		private Equipo equipo;
 		public int getDni() {
 			return dni;
 		}
@@ -34,30 +33,11 @@ public class Entrenador {
 		public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
 			this.fecha_nacimiento = fecha_nacimiento;
 		}
-		
-		
-		public Equipo getEquipo() {
-			return equipo;
-		}
-		public void setEquipo(Equipo equipo) {
-			this.equipo = equipo;
-		}
 		@Override
 		public String toString() {
 			DateTimeFormatter dFormat = DateTimeFormatter.ofPattern(dateFormat);
 			return "Entrenador [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha_nacimiento="
 					+ (fecha_nacimiento==null?null:fecha_nacimiento.format(dFormat)) + "]\n";
-		}
-		public Entrenador(int dni, String nombre, String apellido, LocalDate fecha_nacimiento, String dateFormat) {
-			super();
-			this.dni = dni;
-			this.nombre = nombre;
-			this.apellido = apellido;
-			this.fecha_nacimiento = fecha_nacimiento;
-			this.dateFormat = dateFormat;
-		}
-		public Entrenador() {
-			
 		}
 		
 	
