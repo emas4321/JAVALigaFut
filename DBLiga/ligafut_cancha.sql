@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `ligafut` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `ligafut`;
--- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: ligafut
+-- Host: localhost    Database: ligafut
 -- ------------------------------------------------------
--- Server version	8.0.25
+-- Server version	8.0.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,10 +25,10 @@ DROP TABLE IF EXISTS `cancha`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cancha` (
-  `numCancha` int NOT NULL,
+  `numCancha` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`numCancha`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `cancha` (
 
 LOCK TABLES `cancha` WRITE;
 /*!40000 ALTER TABLE `cancha` DISABLE KEYS */;
-INSERT INTO `cancha` VALUES (1,'La Bombonera'),(2,'King Power Stadium'),(3,'Camp Nou'),(4,'White Hart Lane'),(5,'Parc des Princes');
+INSERT INTO `cancha` VALUES (1,'La Bombonera'),(2,'King Power Stadium'),(3,'Camp Nou'),(4,'White Hart Lane'),(5,'Parc des Princes'),(6,'Signal Iduna Park');
 /*!40000 ALTER TABLE `cancha` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-13  0:07:39
+-- Dump completed on 2022-02-28 18:21:14
