@@ -27,12 +27,10 @@
         <th>Id Equipo</th>
         <th>Nombre Equipo</th>
         <th>Localidad</th>
-        <th>Accion</th>
+        <th></th>
         </tr>
         <%
-        	DataEquipo equipo=new DataEquipo();
-       		LinkedList<Equipo>list=equipo.getall();
-			Equipo equi=null;
+       		LinkedList<Equipo>list= (LinkedList<Equipo>)session.getAttribute("lista");
 			for(Equipo listE : list) {
 			
         %>

@@ -1,5 +1,6 @@
 package Entidades;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -7,7 +8,7 @@ public class Entrenador {
 		private int dni;
 		private String nombre;
 		private String apellido;
-		private  LocalDate fecha_nacimiento;
+		private  LocalDate fecha_nacimiento; 
 		private String dateFormat = "dd/MM/yyyy";
 		public int getDni() {
 			return dni;
@@ -39,6 +40,7 @@ public class Entrenador {
 			return "Entrenador [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha_nacimiento="
 					+ (fecha_nacimiento==null?null:fecha_nacimiento.format(dFormat)) + "]\n";
 		}
+	
 		
 	
 

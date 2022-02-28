@@ -1,5 +1,6 @@
 package Entidades;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -30,8 +31,8 @@ public class Arbitro {
 		public LocalDate getFecha_nacimiento() {
 			return fecha_nacimiento;
 		}
-		public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
-			this.fecha_nacimiento = fecha_nacimiento;
+		public void setFecha_nacimiento(LocalDate localDate) {
+			this.fecha_nacimiento = localDate;
 		}
 		@Override
 		public String toString() {

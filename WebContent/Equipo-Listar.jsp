@@ -30,9 +30,7 @@
         <th>Diferencia de Goles</th>
         </tr>
         <%
-        	DataEquipo equipo=new DataEquipo();
-       		LinkedList<Equipo>list=equipo.getall();
-			Equipo equi=null;
+        	LinkedList<Equipo>list= (LinkedList<Equipo>)session.getAttribute("lista");
 			for(Equipo listE : list) {
 			
         %>

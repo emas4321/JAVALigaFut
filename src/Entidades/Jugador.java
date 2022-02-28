@@ -16,6 +16,7 @@ public class Jugador {
 	private int partidosJugados;
 	private int tarjetasA;
 	private int tarjetasR;
+	
 	public int getDni() {
 		return dni;
 	}
@@ -84,6 +85,7 @@ public class Jugador {
 				+ ", partidosJugados=" + partidosJugados + ", tarjetasA=" + tarjetasA + ", tarjetasR=" + tarjetasR
 				+ "]";
 	}
+
 
 	
 }

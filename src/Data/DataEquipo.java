@@ -131,7 +131,7 @@ public static void modif (Equipo e) {
 }
 
 
-public static Equipo list(int id) {
+public static Equipo getOne(int id) {
 	Conexion conexion = new Conexion();
 	Connection cn = null;
 	Equipo e = new Equipo();

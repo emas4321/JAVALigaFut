@@ -21,9 +21,8 @@
 <%@ include file="/Include/Head.html" %>
    
     <br>
-	<%	DataEquipo dEqui= new DataEquipo();
-		int id=Integer.parseInt((String) request.getAttribute("idEqui"));
-		Equipo e=(Equipo)dEqui.list(id);
+	<%	
+		Equipo e=(Equipo)request.getAttribute("equipo");
 	
 	%>
     <div class="container border text-center">
