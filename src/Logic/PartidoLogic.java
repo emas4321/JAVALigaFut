@@ -31,5 +31,9 @@ public class PartidoLogic {
 	{
 		return dPartido.alta(p);
 	}
+	public boolean baja(Partido p)
+	{
+		return dPartido.baja(p);
+	}
 
 }

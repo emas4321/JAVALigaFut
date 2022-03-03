@@ -28,7 +28,7 @@ public class DataPartido {
 								p.setFecha(rs.getObject("fecha", LocalDate.class));
 								p.setHora(rs.getObject("hora", LocalTime.class));
 								p.setResultado(rs.getString("resultado"));
-								/*p.setIncidencias(rs.getString("incidencias"))*/
+								p.setIncidencias(rs.getString("incidencias"));
 								p.setIdEquipo1(rs.getInt("idEquipo1"));
 								p.setIdEquipo2(rs.getInt("idEquipo2"));
 								p.setNumCancha(rs.getInt("numCancha"));
@@ -128,5 +128,24 @@ public class DataPartido {
         }
 		return true;
 	}
+	public static boolean baja(Partido p) {
+		Conexion conexion = new Conexion();
+		Connection cn = null;
+	    try {
+	    	cn = conexion.conectar();
+	    	PreparedStatement ps = cn.prepareStatement("delete from partido where fecha=? and hora=? and numCancha=?");
+			ps.setObject(1, p.getFecha());
+			ps.setObject(2, p.getHora());
+			ps.setInt(3, p.getNumCancha());		
+			ps.executeUpdate();  		
+	        if(ps!=null)ps.close();
+	        cn.close();	        
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	        return false;
+	    }
+	    return true;
+	
+}
 
 }

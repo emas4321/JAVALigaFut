@@ -8,7 +8,7 @@ public class Partido {
 			private LocalDate fecha;
 			private LocalTime hora;
 			private String resultado;
-			private LinkedList<String> incidencias;
+			private String incidencias;
 			private int idEquipo1;
 			private int idEquipo2;
 			private String dniArbitro;
@@ -32,10 +32,10 @@ public class Partido {
 			public void setResultado(String resultado) {
 				this.resultado = resultado;
 			}
-			public LinkedList<String> getIncidencias() {
+			public String getIncidencias() {
 				return incidencias;
 			}
-			public void setIncidencias(LinkedList<String> incidencias) {
+			public void setIncidencias(String incidencias) {
 				this.incidencias = incidencias;
 			}
 			@Override
@@ -67,5 +67,18 @@ public class Partido {
 			public void setNumCancha(int numCancha) {
 				this.numCancha = numCancha;
 			}
+			public Partido(LocalDate fecha, LocalTime hora, String resultado, String incidencias, int idEquipo1, int idEquipo2, String dniArbitro, int numCancha)
+			{
+				this.setDniArbitro(dniArbitro);
+				this.setFecha(fecha);
+				this.setHora(hora);
+				this.setIdEquipo1(idEquipo1);
+				this.setIdEquipo2(idEquipo2);
+				this.setIncidencias(incidencias);
+				this.setResultado(resultado);
+				this.setNumCancha(numCancha);
+			}
+			public Partido()
+			{}
 			
 }

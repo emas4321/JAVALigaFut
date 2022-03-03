@@ -83,7 +83,7 @@ public class CanchaControl extends HttpServlet {
 		if(action.equalsIgnoreCase("editar")) {
 			int numC=Integer.parseInt((String) request.getParameter("numC"));
 			DataCancha dCancha= new DataCancha();
-			Cancha c=(Cancha)dCancha.list(numC);
+			Cancha c=(Cancha)dCancha.getOne(numC);
 			request.getSession().setAttribute("Cancha", c);
 			response.sendRedirect(edit);
 		}

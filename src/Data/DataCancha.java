@@ -122,7 +122,7 @@ public class DataCancha {
 		}
 
 
-		public static Cancha list(int nroCancha) {
+		public static Cancha getOne(int nroCancha) {
 			Conexion conexion = new Conexion();
 			Connection cn = null;
 			Cancha c = new Cancha();

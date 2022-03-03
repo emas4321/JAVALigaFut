@@ -32,6 +32,7 @@ import Entidades.Partido;
 public class ControladorRePartido extends HttpServlet {
 	String reprogramar="ReprogramarPartido.jsp";
 	String listaCancha="CanchaDisp.jsp";
+	String listar="Partido-Listar.jsp";
 	Equipo e = new Equipo();
 	String fp=null;// fecha del partido seleccionado
 	LocalDate fechaP=null;
@@ -91,22 +92,20 @@ public class ControladorRePartido extends HttpServlet {
 			*/
 			p=pl.getOne(fechaP, horaP, nroC);
 			preparalistC(request,response,horaN,fechaN,p.getIdEquipo1(),p.getIdEquipo2());
+			System.out.println(fechaP + " -- " +  horaP);
+			System.out.println(fechaN + " -- " +  horaN);
 			response.sendRedirect(listaCancha);		
 			
 		}
 		if(action.equalsIgnoreCase("seleccion"))
 		{
-			LocalDate fechaP= LocalDate.parse(request.getParameter("FechaPar"));
-			System.out.println(horaP);
-			System.out.println(fechaP);
-			System.out.println(nroC);
+			LocalDate fechaP= LocalDate.parse(request.getParameter("FechaPar")); // puede ser que no haga falta junto con el session.getAtribute en canchaDisp al final
 			//String fp=request.getParameter("fechaP"); // fecha del partido seleccionado
 			//LocalDate fechaP=LocalDate.parse(fp);
 			//String hp=request.getParameter("horaP"); // hora del partido seleccionado
 			//LocalTime horaP=LocalTime.parse(hp);	
 			//int nroC=Integer.parseInt((String) request.getParameter("nroCP"));
-			Partido partido=pl.getOne(fechaP,horaP,nroC); // getOne con la fecha y hora del partido seleccionado, verificar si puedo pedir estos datos que deberian ser enviados en Partido_Listar
-			
+			Partido partido=pl.getOne(fechaP,horaP,nroC); // getOne con la fecha y hora del partido seleccionado, verificar si puedo pedir estos datos que deberian ser enviados en Partido_Listar			
 			partido.setResultado("Repro");// una alternativa
 			pl.Modif(partido); // modifico el resultado a reprogramado
 			System.out.println(partido);
@@ -124,7 +123,7 @@ public class ControladorRePartido extends HttpServlet {
 			partidoNuevo.setNumCancha(Integer.parseInt((String) request.getParameter("nroCancha")));
 			System.out.println(partidoNuevo);
 			pl.alta(partidoNuevo);
-			
+			acceso=listar;
 		}
 				
 		
@@ -138,27 +137,17 @@ public class ControladorRePartido extends HttpServlet {
 		LinkedList<Partido> listP = partidoL.getAll();
 		LinkedList<Cancha> listC = canchaL.getAll(); // como Partidos tiene visibilidad de canchas asumo que puedo hacerlo, verificar esto sino buscar otra forma
 		LinkedList<Cancha> listCDisp= new LinkedList<>();
-		Boolean disp=true;
-		if(validar.VerificarEquipos(id1,id2,fecha,hora)) //si la lista sale vacia falta mostrar un mensaje diciendo que los equipos ya estan jguando aprtidos en esa fecha
-		{
+		if(validar.VerificarEquiposFecha(id1,id2,fecha,hora)) //si la lista sale vacia falta mostrar un mensaje diciendo que los equipos ya estan jguando aprtidos en esa fecha
+		{		
 			for(Cancha c: listC)
 		{
-			disp=true;
-			for(Partido p:listP)
 			{
-				if(p.getNumCancha()==c.getNroCancha() && p.getFecha()==fecha &&p.getHora()==hora)
-					disp=false;
-					
-			}
-			if (disp)
-			{
-				listCDisp.add(c);
+				if(validar.VerificarCanchaDisp(fecha,hora,c.getNroCancha()))
+					listCDisp.add(c);
 			}
 		}
 		}
 		
-		
-
 		request.getSession().setAttribute("listaC", listCDisp);
 
 }

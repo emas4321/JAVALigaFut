@@ -1,7 +1,10 @@
-<%@ page import="Data.DataJugador"
+<%@ page import="Data.DataEquipo"
 	import="java.util.LinkedList"
-	import="Entidades.Jugador"
-	import="java.util.Iterator"%>
+	import="Entidades.Partido"
+	import="Entidades.Equipo"
+	import="java.util.Iterator"
+	import="Logic.PartidoLogic"
+	import="Logic.EquipoLogic"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,36 +27,32 @@
     <br>
     <table id="tableEquipo" class="table table-bordered ">
         <tr>
-        	<th>Dni</th>
-            <th>Nombre </th>
-            <th>Apellido</th>
-            <th>Fecha Nacimiento</th>
-            <th>Posicion</th>
-            <th>Goles</th>
-            <th>Asistencias</th>
-            <th>Tarjetas Amarillas</th>
-            <th>Tarjetas Rojas</th>
-            <th>Partidos Jugados</th>
-            <th></th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Resultado</th>
+        <th>Primer Equipo</th>
+        <th>Segundo Equipo</th>
+        <th>Cancha</th>
         </tr>
         <%
-       		LinkedList<Jugador>list= (LinkedList<Jugador>)session.getAttribute("lista");
-			for(Jugador listJ : list) {
-			
+        	PartidoLogic partidoL= new PartidoLogic();
+       		LinkedList<Partido>listP=partidoL.getAll();
+       		EquipoLogic equipoL=new EquipoLogic();
+			for(Partido P : listP) {	
+			Equipo e1 = equipoL.getOne(P.getIdEquipo1());
+	        Equipo e2 = equipoL.getOne(P.getIdEquipo2());
         %>
         <tr>
-        	<th><%=listJ.getDni()%></th>
-            <th><%=listJ.getNombre()%></th>
-            <th><%=listJ.getApellido()%></th>
-            <th><%=listJ.getFecha_nacimiento()%></th>
-            <th><%=listJ.getPosicion()%></th>
-            <th><%=listJ.getGoles()%></th>
-            <th><%=listJ.getAsistencias()%></th>
-            <th><%=listJ.getTarjetasA()%></th>
-            <th><%=listJ.getTarjetasR()%></th>
-            <th><%=listJ.getPartidosJugados()%></th>
+        	<th><%=P.getFecha()%></th>
+            <th><%=P.getHora() %></th>
+            <th><%=P.getResultado() %></th>
+            <th><%=e1.getNombre()%></th>
+            <th><%=e2.getNombre() %></th>
+            <th><%=P.getNumCancha() %></th>
             <th><form action="PartidoControl" method=post>
-            	<input type="hidden" name="dni" class="form-control" value="<%=listJ.getDni()%>">	
+            	<input type="hidden" name="fecha" class="form-control" value="<%=P.getFecha() %>">	
+                <input type="hidden" name="hora" class="form-control" value="<%=P.getHora() %>">	
+                <input type="hidden" name="nroC" class="form-control" value="<%=P.getNumCancha() %>">	
             	<button type="submit" class="btn btn-primary" name="accion" value="editar">Editar</button>
             	<button type="submit" class="btn btn-primary" name="accion" value="eliminar">Eliminar</button>
            		</form>

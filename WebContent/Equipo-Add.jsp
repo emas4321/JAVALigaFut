@@ -1,5 +1,6 @@
 
 <%@ page language="java" import="java.util.*,java.sql.*"
+						 import="Entidades.Entrenador"
 	%>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,6 +57,23 @@
             <input type="number" name="difGol" class="form-control" required> 
           </div>
         </div>
+        <div class="row mt-3">
+          <label for="difGol" class="col-form-label col-sm-2">Entrenador: </label>
+          <div class="col-sm-2">
+      
+
+     <select class="form-select" aria-label="Default select example" name="EntrenadorDni">
+         <%
+        LinkedList<Entrenador>listaE=(LinkedList<Entrenador>)session.getAttribute("listaE");
+            for(Entrenador e : listaE) {
+     %> 
+        <option selected value="<%=e.getDni()%>"><%=e.getNombre()%></option>
+
+    <%}%>
+      </select>
+          </div>
+        </div>
+         
         <div class="row mt-3 mb-3">
           <div class="offset-sm-1 col-sm-10">
             <button type="submit" class="btn btn-primary" name="accion" value="agregar"> Cargar</button>

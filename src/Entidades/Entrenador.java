@@ -8,6 +8,7 @@ public class Entrenador {
 		private int dni;
 		private String nombre;
 		private String apellido;
+		private Integer idEquipo;
 		private  LocalDate fecha_nacimiento; 
 		private String dateFormat = "dd/MM/yyyy";
 		public int getDni() {
@@ -33,6 +34,12 @@ public class Entrenador {
 		}
 		public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
 			this.fecha_nacimiento = fecha_nacimiento;
+		}
+		public Integer getIdEquipo() {
+			return idEquipo;
+		}
+		public void setIdEquipo(Integer idEquipo) {
+			this.idEquipo = idEquipo;
 		}
 		@Override
 		public String toString() {

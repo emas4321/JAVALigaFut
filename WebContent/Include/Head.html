@@ -25,6 +25,18 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
+                          Partido
+                        </a>
+                        <ul class="dropdown-menu">
+                         	<form action="PartidoControl" method=post>
+                          <li><button class="btn btn-sm btn-light w-100" type="submit" name="accion" value="add">Cargar Partido</button></li>
+                          <li><button class="btn btn-sm btn-light" type="submit" name="accion" value="modif">Modificar o Eliminar Partidos</button></li>
+                          <li><button class="btn btn-sm btn-light w-100" type="submit" name="accion" value="listarP">Mostrar Partidos</button></li>
+                          </form>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
                           Jugador
                         </a>
                         <ul class="dropdown-menu">
@@ -76,8 +88,9 @@
                           Caso de uso
                         </a>
                         <ul class="dropdown-menu">
-                        <form action="Controlador" method=post>
+                        <form action="CUControl" method=post>
                            <li><button class="btn btn-sm btn-light w-100" type="submit" name="accion" value="ReprogramarPartido">Reprogramar</button></li>
+                            <li><button class="btn btn-sm btn-light w-100" type="submit" name="accion" value="AsignarArbitro">AsignarArbitro</button></li>
                            </form>
                         </ul>
                     </li> 

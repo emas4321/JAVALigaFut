@@ -27,7 +27,7 @@ public class DataArbitro {
 			
 			while (rs.next()) {
 				Arbitro a=new Arbitro();
-				a.setDni(rs.getInt("dniArbitro"));
+				a.setDni(rs.getString("dniArbitro"));
 				a.setNombre(rs.getString("nombre"));
 				a.setApellido(rs.getString("apellido"));
 				a.setFecha_nacimiento(rs.getObject("fechaNac",LocalDate.class));
@@ -69,7 +69,7 @@ public class DataArbitro {
 	        	cn = conexion.conectar();
 	    		PreparedStatement ps;
 	    		ps=cn.prepareStatement("insert into arbitro(dniArbitro,nombre,apellido,fechaNac) values (?,?,?,?)");
-	    		ps.setInt(1, a.getDni());
+	    		ps.setString(1, a.getDni());
 	    		ps.setString(2, a.getNombre());
 				ps.setString(3,a.getApellido());
 				ps.setObject(4,a.getFecha_nacimiento());
@@ -94,7 +94,7 @@ public class DataArbitro {
 		    try {
 		    	cn = conexion.conectar();
 		    	PreparedStatement ps = cn.prepareStatement("delete from arbitro where dniArbitro=?");
-				ps.setInt(1, a.getDni());
+				ps.setString(1, a.getDni());
 				ps.executeUpdate();  
 					
 		        if(ps!=null)ps.close();
@@ -118,7 +118,7 @@ public class DataArbitro {
 			ps.setString(1, a.getNombre());
 			ps.setString(2,a.getApellido());
 			ps.setObject(3,a.getFecha_nacimiento());
-			ps.setInt(4,a.getDni());
+			ps.setString(4,a.getDni());
 	        ps.executeUpdate();   
 	        if(ps!=null)ps.close();
 	        cn.close();
@@ -141,7 +141,7 @@ public class DataArbitro {
 			ResultSet rs=ps.executeQuery();  
 	        while (rs.next()) {
 				
-				a.setDni(rs.getInt("dniArbitro"));
+				a.setDni("dniArbitro");
 				a.setNombre(rs.getString("nombre"));
 				a.setApellido(rs.getString("apellido"));
 				a.setFecha_nacimiento(rs.getObject("fechaNac",LocalDate.class));

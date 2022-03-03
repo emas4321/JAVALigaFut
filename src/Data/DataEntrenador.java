@@ -31,6 +31,7 @@ public class DataEntrenador {
 					e.setNombre(rs.getString("nombre"));
 					e.setApellido(rs.getString("apellido"));
 					e.setFecha_nacimiento(rs.getObject("fechaNac",LocalDate.class));
+					e.setIdEquipo(rs.getInt("idEquipo"));
 					entre.add(e);
 					
 				}
@@ -112,11 +113,12 @@ public class DataEntrenador {
 		    try {
 		    	cn = conexion.conectar();
 				PreparedStatement ps;
-				ps=cn.prepareStatement("update entrenador set nombre=?, apellido=?, fechaNac=? where dniEntrenador=?");
+				ps=cn.prepareStatement("update entrenador set nombre=?, apellido=?, fechaNac=?,idEquipo=? where dniEntrenador=?");
 				ps.setString(1, e.getNombre());
 				ps.setString(2,e.getApellido());
 				ps.setObject(3,e.getFecha_nacimiento());
-				ps.setInt(4, e.getDni());
+				ps.setInt(4, e.getIdEquipo());
+				ps.setInt(5, e.getDni());
 		        ps.executeUpdate();   
 		        if(ps!=null)ps.close();
 		        cn.close();
@@ -127,7 +129,7 @@ public class DataEntrenador {
 		}
 
 
-		public static Entrenador list(int dni) {
+		public static Entrenador getOne(int dni) {
 			Conexion conexion = new Conexion();
 			Connection cn = null;
 			Entrenador e = new Entrenador();

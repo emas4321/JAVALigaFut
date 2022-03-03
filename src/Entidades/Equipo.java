@@ -8,6 +8,7 @@ public class Equipo {
 	private String Localidad;
 	private int puntaje;
 	private int difGoles;
+
 	
 
 	public int getIdEquipo() {

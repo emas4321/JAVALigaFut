@@ -10,4 +10,14 @@
     <welcome-file>welcome-file</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>CasoUsoControl</display-name>
+    <servlet-name>CasoUsoControl</servlet-name>
+    <servlet-class>Logic.Controlador</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CasoUsoControl</servlet-name>
+    <url-pattern>/CasoUsoControl</url-pattern>
+  </servlet-mapping>
 </web-app>

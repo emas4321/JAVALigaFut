@@ -62,7 +62,7 @@ public class ArbitroControl extends HttpServlet {
 			String apellido = request.getParameter("apellido");
 			LocalDate fechaNac = LocalDate.parse(request.getParameter("fechaNac"));
 			
-			a.setDni(Integer.parseInt(dni));
+			a.setDni(dni);
 			a.setNombre(nombre);
 			a.setApellido(apellido);
 			a.setFecha_nacimiento(fechaNac);
@@ -92,7 +92,7 @@ public class ArbitroControl extends HttpServlet {
 			response.sendRedirect(edit);
 		}
 		if(action.equalsIgnoreCase("Actualizar")) {
-			int dni=Integer.parseInt(request.getParameter("dni"));
+			String dni=request.getParameter("dni");
 			String nombre = request.getParameter("nombre");
 			String apellido = request.getParameter("apellido");
 			LocalDate fechaNac = LocalDate.parse(request.getParameter("fechaNac"));
@@ -107,7 +107,7 @@ public class ArbitroControl extends HttpServlet {
 			response.sendRedirect(listar);
 		}
 		if(action.equalsIgnoreCase("eliminar")) {
-			int dni=Integer.parseInt(request.getParameter("dni"));
+			String dni=request.getParameter("dni");
 			a.setDni(dni);
 			DataArbitro.baja(a);
 			preparalist(request, response);

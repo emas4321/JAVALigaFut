@@ -5,15 +5,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Arbitro {
-		private int dni;
+		private String dni;
 		private String nombre;
 		private String apellido;
 		private  LocalDate fecha_nacimiento;
 		private String dateFormat = "dd/MM/yyyy";
-		public int getDni() {
+		public String getDni() {
 			return dni;
 		}
-		public void setDni(int dni) {
+		public void setDni(String dni) {
 			this.dni = dni;
 		}
 		public String getNombre() {
@@ -40,6 +40,7 @@ public class Arbitro {
 			return "Arbitro [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha_nacimiento="
 					+ (fecha_nacimiento==null?null:fecha_nacimiento.format(dFormat)) + "]\n";
 		}
+	
 		
 
 }

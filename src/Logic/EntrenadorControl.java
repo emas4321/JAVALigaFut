@@ -87,7 +87,7 @@ public class EntrenadorControl extends HttpServlet {
 		if(action.equalsIgnoreCase("editar")) {
 			int dni=Integer.parseInt((String) request.getParameter("dni"));
 			DataEntrenador dEntrenador= new DataEntrenador();
-			Entrenador e=(Entrenador)dEntrenador.list(dni);
+			Entrenador e=(Entrenador)dEntrenador.getOne(dni);
 			request.getSession().setAttribute("Entrenador", e);
 			response.sendRedirect(edit);
 		}

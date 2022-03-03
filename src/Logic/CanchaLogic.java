@@ -15,5 +15,9 @@ public class CanchaLogic {
 	public LinkedList<Cancha> getAll () {
 		return dCancha.getall();
 	}
+	public Cancha getOne (int nroC)
+	{
+		return dCancha.getOne(nroC);
+	}
 
 }

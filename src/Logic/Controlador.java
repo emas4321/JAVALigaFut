@@ -13,9 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.connector.Request;
 
+import Entidades.Arbitro;
+import Entidades.Entrenador;
 import Entidades.Equipo;
 import Entidades.Partido;
 import Data.DataEquipo;
+import Logic.EntrenadorLogic;
 
 
 /**
@@ -28,6 +31,7 @@ public class Controlador extends HttpServlet {
 	String modif="Equipo-Modif.jsp";
 	String edit="Equipo-Edit.jsp";
 	String PartidoListar="Partido_Listar.jsp";
+	String asignaArbitro="AsignarArbitro";
 	Equipo e = new Equipo();
 	
 	private static final long serialVersionUID = 1L;
@@ -49,6 +53,7 @@ public class Controlador extends HttpServlet {
 			acceso=listar;
 		}
 		else if(action.equalsIgnoreCase("add")) {
+			preparalistE(request, response);
 			acceso=add;
 		}
 		else if(action.equalsIgnoreCase("agregar")) {
@@ -57,13 +62,18 @@ public class Controlador extends HttpServlet {
 			String localidad = request.getParameter("localidad");
 			String	puntaje = request.getParameter("puntaje");
 			String difGol = request.getParameter("difGol");
+			EntrenadorLogic entrenadorL=new EntrenadorLogic();
+			int dni= Integer.parseInt(request.getParameter("EntrenadorDni"));
+			Entrenador entrenador=entrenadorL.getOne(dni);
 			e.setIdEquipo(Integer.parseInt(id));
 			e.setNombre(nombre);
 			e.setLocalidad(localidad);
 			e.setPuntaje(Integer.parseInt(puntaje));
 			e.setDifGoles(Integer.parseInt(difGol));
+			entrenador.setIdEquipo(e.getIdEquipo());					
 			if(DataEquipo.alta(e)) {
 				preparalist(request, response);
+				entrenadorL.Modif(entrenador);
 				acceso=listar;
 			} else {
 				request.setAttribute("msg", "No se pudo cargar Equipo Vuelva a intentarlo");
@@ -106,21 +116,34 @@ public class Controlador extends HttpServlet {
 		else if(action.equalsIgnoreCase("eliminar")) {
 			int id=Integer.parseInt(request.getParameter("id"));
 			e.setIdEquipo(id);
-			DataEquipo.baja(e);
+			EntrenadorLogic entrenadorL= new EntrenadorLogic();
+			LinkedList<Entrenador> listaEntrenador= new LinkedList<>();
+			listaEntrenador=entrenadorL.getAll();
+			Boolean Disp=true;
+			Entrenador entrenadorConEquipo= new Entrenador();
+			for(Entrenador entrenador: listaEntrenador)
+			{
+				if(entrenador.getIdEquipo()==e.getIdEquipo())
+				{
+					Disp=false;
+					entrenadorConEquipo=entrenador;
+				}
+					
+			}
+			if(Disp)
+			{
+				DataEquipo.baja(e);	
+			}
+			else
+			{
+				entrenadorL.baja(entrenadorConEquipo);
+				DataEquipo.baja(e);
+			}
 			preparalist(request, response);
 			acceso=listar;
-		}
-		
-		if(action.equalsIgnoreCase("ReprogramarPartido"))
-		{
-			preparalistP(request, response);
-			acceso=PartidoListar;
-		}
-					
+		}					
 		RequestDispatcher vista=request.getRequestDispatcher(acceso);
-		vista.forward(request, response);
-		
-		
+		vista.forward(request, response);		
 	}
 
 
@@ -131,17 +154,15 @@ private void preparalist(HttpServletRequest request, HttpServletResponse respons
 	}
 
 
-private void preparalistP(HttpServletRequest request, HttpServletResponse response) {
-	PartidoLogic partidoL= new PartidoLogic();
-	LinkedList<Partido> listP = partidoL.getAll();
-	System.out.println(listP);
-	LinkedList<Partido>listPDisp=new LinkedList<>();
-	for(Partido p:listP)
+private void preparalistE(HttpServletRequest request, HttpServletResponse response) {
+	EntrenadorLogic entrenadorL= new EntrenadorLogic();
+	LinkedList<Entrenador> listE = entrenadorL.getAll();
+	LinkedList<Entrenador>listEDisp=new LinkedList<>();
+	for(Entrenador e:listE)
 	{
-		if(p.getResultado()== null && p.getFecha().isAfter(LocalDate.now())) // habia otro metodo para comparar si un string era nulo en una de las primeras clases de meca
-			listPDisp.add(p);
+		if(e.getIdEquipo()==0) // habia otro metodo para comparar si un string era nulo en una de las primeras clases de meca
+			listEDisp.add(e);
 	}
-	request.getSession().setAttribute("listaP", listPDisp); // muestra los partidos que no tengan resultado
+	request.getSession().setAttribute("listaE", listEDisp); // muestra los partidos que no tengan resultado
 }
-
 }
