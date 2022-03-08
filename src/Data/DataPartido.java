@@ -32,6 +32,7 @@ public class DataPartido {
 								p.setIdEquipo1(rs.getInt("idEquipo1"));
 								p.setIdEquipo2(rs.getInt("idEquipo2"));
 								p.setNumCancha(rs.getInt("numCancha"));
+								p.setDniArbitro(rs.getString("dniArbitro"));
 								Partidos.add(p);
 								}
 			if(stmt!=null) {stmt.close();}
@@ -45,10 +46,10 @@ public class DataPartido {
 		Conexion conexion = new Conexion();
 		Connection cn = null;
 		//Actualiza resultado y incidencias de un partido que ya debe estar cargado
-		
+		System.out.println("Partido modif " + p);
 		try { 
 			cn = conexion.conectar();
-			PreparedStatement stmt = cn.prepareStatement("update partido set  resultado = ?, idEquipo1 =?, idEquipo2=?, dniArbitro=? where  fecha=? and hora =? and numCancha= ?" );
+			PreparedStatement stmt = cn.prepareStatement("update partido set resultado = ?, idEquipo1 =?, idEquipo2=?, dniArbitro=? where  fecha=? and hora =? and numCancha= ?" );
 			stmt.setString(1, p.getResultado());
 			stmt.setInt(2, p.getIdEquipo1());
 			stmt.setInt(3, p.getIdEquipo2());
@@ -57,7 +58,8 @@ public class DataPartido {
 			stmt.setObject(5, p.getFecha());
 			stmt.setObject(6, p.getHora());
 			stmt.setInt(7, p.getNumCancha());
-	
+			
+			
 			stmt.executeUpdate();
 			 
 		} catch (SQLException ex) {

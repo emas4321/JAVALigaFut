@@ -145,6 +145,7 @@ public class DataEntrenador {
 					e.setNombre(rs.getString("nombre"));
 					e.setApellido(rs.getString("apellido"));
 					e.setFecha_nacimiento(rs.getObject("fechaNac",LocalDate.class));
+					e.setIdEquipo(rs.getInt("idEquipo"));
 		        }
 					
 		        if(ps!=null)ps.close();

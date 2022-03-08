@@ -96,8 +96,8 @@ public class EntrenadorControl extends HttpServlet {
 			String nombre = request.getParameter("nombre");
 			String apellido = request.getParameter("apellido");
 			LocalDate fechaNac = LocalDate.parse(request.getParameter("fechaNac"));
-			
-			e.setDni(dni);
+			e=DataEntrenador.getOne(dni);
+			System.out.println(e);
 			e.setNombre(nombre);
 			e.setApellido(apellido);
 			e.setFecha_nacimiento(fechaNac);

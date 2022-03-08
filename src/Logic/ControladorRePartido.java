@@ -123,7 +123,7 @@ public class ControladorRePartido extends HttpServlet {
 			partidoNuevo.setNumCancha(Integer.parseInt((String) request.getParameter("nroCancha")));
 			System.out.println(partidoNuevo);
 			pl.alta(partidoNuevo);
-			acceso=listar;
+			response.sendRedirect(listar);	
 		}
 				
 		

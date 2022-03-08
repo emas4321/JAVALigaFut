@@ -58,6 +58,8 @@ public class PartidoControl extends HttpServlet {
 				p.setNumCancha(nroC);
 				p.setIdEquipo1(idEquipo1);
 				p.setIdEquipo2(idEquipo2);
+				p.setResultado("");
+				p.setDniArbitro("");
 				partidoL.alta(p);		
 				acceso=listar;
 			}
@@ -78,39 +80,64 @@ public class PartidoControl extends HttpServlet {
 			acceso=edit;
 		}
 		if(action.equalsIgnoreCase("Actualizar"))
-		{
+		{	PartidoLogic partidoL=new PartidoLogic();
+			
 			Validaciones validar= new Validaciones();
 			LocalDate fecha= LocalDate.parse(request.getParameter("fecha"));
 			
 			LocalTime hora=LocalTime.parse(request.getParameter("hora"));
 			int nroC=Integer.parseInt(request.getParameter("nroC"));
 			
-			int idEquipo1=Integer.parseInt(request.getParameter("equipo1"));
-			int idEquipo2=Integer.parseInt(request.getParameter("equipo2"));
+			int idEquipo1=Integer.parseInt(request.getParameter("equipo1")); // nuevo
+			int idEquipo2=Integer.parseInt(request.getParameter("equipo2")); // nuevo
 			String resultado=request.getParameter("resultado");
 			String incidencias=request.getParameter("incidencias");
-			if((idEquipo1!=idEquipo2)&& validar.VerificarEquiposFecha(idEquipo1,idEquipo2,fecha,hora))
+			Partido pviejo= partidoL.getOne(fecha, hora, nroC);
+			boolean disp= true;
+			System.out.println(idEquipo1+ "---" + idEquipo2);
+			if (idEquipo1 == idEquipo2) {
+				System.out.println("entro");
+				Partido p=partidoL.getOne(fecha, hora, nroC);
+				request.setAttribute("partido", p);
+				acceso=edit;
+			} else if	((validar.DosEquiposIguales(pviejo.getIdEquipo1(),pviejo.getIdEquipo2(),idEquipo1,idEquipo2)) ) // verifica si los dos ids viejos son iguales a los nuevos validar.DosEquiposIguales(pviejo.getIdEquipo1(),pviejo.getIdEquipo2(),idEquipo1,idEquipo2)
 			{
-				PartidoLogic partidoL=new PartidoLogic();
-				Partido p= new Partido();
-				p.setFecha(fecha);
-				p.setHora(hora);
-				p.setIdEquipo1(idEquipo1);
-				p.setIdEquipo2(idEquipo2);
-				p.setNumCancha(idEquipo2);
-				p.setResultado(resultado);
-				p.setIncidencias(incidencias);
-				p.setNumCancha(nroC);
+				Partido p= new Partido(fecha,hora,resultado,incidencias,idEquipo1,idEquipo2,nroC);  		
+				System.out.println(p);
 				partidoL.Modif(p);
 				acceso=listar;
-				
 			}
-			else
-			{
-				acceso=edit;
-			}
-			
-			
+			else {
+				if(idEquipo1==pviejo.getIdEquipo1() || idEquipo1==pviejo.getIdEquipo2()) 
+					{if(validar.VerificarUnEquipo(fecha,hora,idEquipo2))
+						{Partido p= new Partido(fecha,hora,resultado,incidencias,idEquipo1,idEquipo2,nroC);  		
+						System.out.println(p);
+						partidoL.Modif(p);
+						acceso=listar;}
+					}
+					else if (idEquipo2==pviejo.getIdEquipo2() || idEquipo2== pviejo.getIdEquipo1()) {
+								if(validar.VerificarUnEquipo(fecha,hora,idEquipo1))
+								{
+									Partido p= new Partido(fecha,hora,resultado,incidencias,idEquipo1,idEquipo2,nroC);  		
+									System.out.println(p);
+									partidoL.Modif(p);
+									acceso=listar;
+								}}			              
+								else if(validar.VerificarEquiposFecha(idEquipo1,idEquipo2,fecha,hora))
+										{
+											
+											Partido p= new Partido(fecha,hora,resultado,incidencias,idEquipo1,idEquipo2,nroC);  		
+											System.out.println(p);
+											partidoL.Modif(p);
+											acceso=listar;
+										}				
+									else
+										{
+											Partido p=partidoL.getOne(fecha, hora, nroC);
+											request.setAttribute("partido", p);
+											acceso=edit;
+										}
+								}						
 		}
 		if(action.equalsIgnoreCase("eliminar"))
 		{

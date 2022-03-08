@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.LinkedList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +25,7 @@ public class AsignarArbitroControl extends HttpServlet {
 	int nroC=0; // nro cancha del partido seleccionado
 	LocalDate fechaP=null;
 	LocalTime horaP=null;
-
+	String PartidoListar = "Partido-Listar.jsp";
     public AsignarArbitroControl() {
         super();
     }
@@ -45,13 +46,20 @@ public class AsignarArbitroControl extends HttpServlet {
 			session.setAttribute("HoraP",horaP);
 			session.setAttribute("NroC",nroC);
 			preparalistA(request, response, horaP, fechaP);
-			response.sendRedirect(AsignaArbitro);}
+			acceso=AsignaArbitro;}
 		if(action.equalsIgnoreCase("seleccion"))
 		{
 			Partido partido=pl.getOne(fechaP,horaP,nroC); // getOne con la fecha y hora del partido seleccionado
-			partido.setDniArbitro(request.getParameter("dni"));// una alternativa
-			pl.Modif(partido); // modifico el resultado a reprogramado					
+			System.out.println(partido);
+			System.out.println(request.getParameter("dniselec"));
+			partido.setDniArbitro(request.getParameter("dniselec"));// una alternativa
+			System.out.println(partido);
+			pl.Modif(partido); // modifico el resultado a reprogramado		
+			acceso=PartidoListar;
 		}
+		
+		RequestDispatcher vista=request.getRequestDispatcher(acceso);
+		vista.forward(request, response);
     }
     private void preparalistA(HttpServletRequest request, HttpServletResponse response, LocalTime hora, LocalDate fecha) {
 		ArbitroLogic arbitroL= new ArbitroLogic();

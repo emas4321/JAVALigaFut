@@ -135,8 +135,9 @@ public class Controlador extends HttpServlet {
 				DataEquipo.baja(e);	
 			}
 			else
-			{
-				entrenadorL.baja(entrenadorConEquipo);
+			{	
+				entrenadorConEquipo.setIdEquipo(0);
+				entrenadorL.Modif(entrenadorConEquipo);
 				DataEquipo.baja(e);
 			}
 			preparalist(request, response);

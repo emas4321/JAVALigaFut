@@ -52,7 +52,7 @@
             <th><%=listJ.getTarjetasA()%></th>
             <th><%=listJ.getTarjetasR()%></th>
             <th><%=listJ.getPartidosJugados()%></th>
-            <th><form action="PartidoControl" method=post>
+            <th><form action="JugadorControl" method=post>
             	<input type="hidden" name="dni" class="form-control" value="<%=listJ.getDni()%>">	
             	<button type="submit" class="btn btn-primary" name="accion" value="editar">Editar</button>
             	<button type="submit" class="btn btn-primary" name="accion" value="eliminar">Eliminar</button>
